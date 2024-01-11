@@ -20,7 +20,7 @@ if(isset($_POST['submit']))
             <ul>
                 <li><a href="">Accueil</a></li>
                 <li><a href="detail.php">Nos Evenements</a></li>
-                <li><a href="formulaire.php">Inscription</a></li>
+                <li><a href="formulaire.php">Authentification Admin</a></li>
             </ul><br>
            
         </div>
