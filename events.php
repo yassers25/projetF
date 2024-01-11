@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="event_styles.css">
+  <link rel="stylesheet" href="event_style.css">
   <title>Events</title>
 </head>
 
@@ -87,13 +87,13 @@
         <?php
 
         $sql = "SELECT * FROM event";
-        $result = $link->query($sql);
-        if ($result->num_rows > 0) {
-          while ($row = $result->fetch_assoc()) {
+        $result = mysqli_query($link, $sql);
+        if (mysqli_num_rows($result) > 0) {
+          while ($row = mysqli_fetch_assoc($result)) {
             ?>
 
             <div class="card" style="width: 18rem;">
-              <a href="#">
+              <a href="detail.php">
                 <div class="card-body">
                   <?php
                   echo '<img src="images/' . $row['IMAGE'] . '" alt="Event Image" style="width: 250px;">';
@@ -118,7 +118,7 @@
             <?php
           }
         }
-        $link->close();
+        mysqli_close($link);
         ?>
 
       </div>
@@ -140,7 +140,25 @@
     margin-top: 4rem;">
         <details class="dropdown">
           <summary role="button">
-            <a class="button" ><i class="icon ion-social-linkedin" style="font-size: 50px;margin-right:2rem;margin-left:2rem;"></i></a>
+            <a class="button"><i class="icon ion-social-linkedin"
+                style="font-size: 50px;margin-right:2rem;margin-left:2rem;"></i></a>
+
+            </a>
+          </summary>
+          <ul>
+            <li><a href="https://www.linkedin.com/in/sara-foukhar-65431b237/">Foukhar Sara</a></li>
+            <li><a href="#">Salhi Yasser</a></li>
+            <li><a href="#">Semmar Rihab</a></li>
+            <li><a href="#">Seddiqe Douaa</a></li>
+          </ul>
+
+        </details>
+
+
+        <details class="dropdown">
+          <summary role="button">
+            <a class="button"><i class="icon ion-social-twitter"
+                style="font-size: 50px;margin-right:2rem;margin-left:2rem;"></i></a>
 
             </a>
           </summary>
@@ -153,30 +171,15 @@
 
         </details>
 
-
         <details class="dropdown">
           <summary role="button">
-            <a class="button"><i class="icon ion-social-twitter" style="font-size: 50px;margin-right:2rem;margin-left:2rem;"></i></a>
+            <a class="button"><i class="icon ion-social-github"
+                style="font-size: 50px;margin-right:2rem;margin-left:2rem;"></i></a>
 
             </a>
           </summary>
           <ul>
-            <li><a href="#">Foukhar Sara</a></li>
-            <li><a href="#">Salhi Yasser</a></li>
-            <li><a href="#">Semmar Rihab</a></li>
-            <li><a href="#">Seddiqe Douaa</a></li>
-          </ul>
-
-        </details>
-
-        <details class="dropdown">
-          <summary role="button">
-            <a class="button"><i class="icon ion-social-github" style="font-size: 50px;margin-right:2rem;margin-left:2rem;"></i></a>
-
-            </a>
-          </summary>
-          <ul>
-            <li><a href="#">Foukhar Sara</a></li>
+            <li><a href="https://github.com/FoukharSara">Foukhar Sara</a></li>
             <li><a href="#">Salhi Yasser</a></li>
             <li><a href="#">Semmar Rihab</a></li>
             <li><a href="#">Seddiqe Douaa</a></li>
