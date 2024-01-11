@@ -1,0 +1,159 @@
+@font-face {
+    font-family: font;
+    src: url(fonts/LibreBaskerville-Regular.ttf);
+    margin-bottom: -200px;
+}
+body{
+    background-color: #ebebeb;
+    
+}
+.header{
+    background-image: url(img/croppedensa.jpg);
+    height : 400px;
+    width : 1523px;
+    margin-left: -10px;
+    margin-top: -10px;
+    opacity: 0.8;
+}
+.header nav{
+    opacity : 1;
+    border-bottom: 2px solid #ebebeb;
+}
+.header nav li a:hover{
+    color : #1b4353;
+}
+
+.header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    margin-left: auto; 
+    margin-top: -30px;
+}
+
+.header li {
+    margin-left: 80px;
+    position : relative;
+    left : 800px;
+    
+}
+.header a {
+    text-decoration: none;
+    color: white;
+    font-family: font,serif;
+    font-size: 16px;
+}
+.header input{
+    position : relative;
+    left : 730px;
+    top : 200px;
+    height : 40px;
+    width : 150px;
+    border-radius: 30px;
+    border-style: solid;
+    color : black;
+    border-width: 0px;
+}
+.section1 h1{
+    text-align: center;
+    font-family: font,serif;
+    color : #1b4353;
+    font-size: 3em;
+}
+.para1{
+    width : 900px;
+    text-align: center;
+    margin-left: 300px;   
+}
+.section2 h1{
+    text-align: center;
+    font-family: font,serif;
+    color : #1b4353;
+    font-size: 3em;
+
+}
+.section2 .forum{
+    position:relative;
+    left : 140px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+.section2 .forum1{
+    position:relative;
+    top : -873px;
+    left : 140px;
+    opacity : 0;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+   
+}
+.section2 .forum:hover{
+    opacity:0;
+}
+.section2 .forum1:hover{
+    opacity: 1;
+}
+.section2 .march{
+    position:relative;
+    left : 140px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    top : -800px;
+}
+.section2 .march1{
+    position:relative;
+    left : 140px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    top : -1672px;
+    opacity : 0;
+}
+.section2 .march:hover{
+    opacity:0;
+}
+.section2 .march1:hover{
+    opacity: 1;
+}
+.club {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 20px;
+    width : 250px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+.club:hover {
+    transform: scale(1.05);
+}
+.section3{
+    position : relative;
+    top : -1600px;
+    
+}
+.section3 h1{
+    text-align: center;
+    font-family: font,serif;
+    color : #1b4353;
+    font-size: 3em;
+}
+.container{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width : 1200px;
+    position : relative;
+    top : 20px;
+    left : 150px;
+}
+a{
+    text-decoration: none;
+    color : #1b4353;
+    font-weight: bold;
+}
+p{
+    font-size: 2.5em;
+}

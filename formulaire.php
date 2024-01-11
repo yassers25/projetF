@@ -1,6 +1,6 @@
 <?php 
 include('connexion.php');
-
+session_start();
 if(isset($_POST['sub'])){
 	$NOM=$_POST['NOM'];
 	$PRENOM=$_POST['PRENOM'];
@@ -46,7 +46,7 @@ if(isset($_POST['sub'])){
 	}
 	$requette="INSERT INTO user (PASSWORD, EMAIL,NOM,PRENOM,GENDER,ADRESSE,TEL,DATE_NAISSANCE,photo) VALUES('$PASSWORD','$EMAIL','$NOM','$PRENOM','$GENDER','$ADRESSE','$TEL','$DATE_NAISSANCE','$ph_name')";
 	$resultat=mysqli_query($link,$requette);
-    header('location: comments.php');
+    header('location: login.php');
 }
 }
 

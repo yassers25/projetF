@@ -1,38 +1,54 @@
 <?php
 session_start();
 include("connexion.php");
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $nom = $_POST['nom'];
-    $password =$_POST['password'];
-
-    // Requête SQL pour vérifier l'existence du nom
-    $query = "SELECT * FROM admin WHERE nom = '$nom'";
-    $resultat = mysqli_query($link, $query);
-
-    if (mysqli_num_rows($resultat) > 0) {
-        $user = mysqli_fetch_assoc($resultat);
-        
-        if ($password == $user['PASSWORD']) {  // Vérification du mot de passe 
-
-            // Enregistrement des données de l'utilisateur dans la session
+if($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    $email = $_POST["email"];
+    $password = $_POST["pass"];
+    $query = "SELECT * FROM user WHERE EMAIL = '$email'";
+    $execute = mysqli_query($link,$query);
+    if(mysqli_num_rows($execute)>0)
+    {
+        $fetch = mysqli_fetch_assoc($execute);
+        if($password == $fetch['PASSWORD'])
+        {
             $_SESSION['loggedin'] = true;
-            $_SESSION['ID_ADMIN'] = $user['ID_ADMIN'];
-            $_SESSION['NOM'] = $user['NOM'];
-            $_SESSION['PRENOM'] = $user['PRENOM'];
-            $_SESSION['TEL'] = $user['TEL'];
-            $_SESSION['PASSWORD'] = $user['PASSWORD'];
-           
-            header("Location: ajouter_evenement.php");
-            exit;
-        } else {
-            echo '<p style="color: red; font-weight: bold; text-align: center; font-size: 1.5em;">Le mot de passe est incorrect.</p>';
+            $_SESSION['email'] = $fetch['EMAIL'];
+            header("Location: detail.php");
+            exit();
         }
-    } else {
-        echo '<p style="color: red; font-weight: bold; text-align: center; font-size: 1.5em;">Le nom n\'existe pas.</p>';
+        else
+        {
+            echo "<p class='message'>Le mot de passe est incorrecte</p>";
+        }
     }
-    // Fermeture de la connexion
+    else{
+        echo "<p class='message'>L'email n'existe pas</p>";
+    }
     mysqli_close($link);
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <nav>
+    <img width='250px' src="img/ensa1.png">
+</nav>
+    <form action="#" method="post">
+        <div class="container">
+        <label>Email:</label><br><br>
+        <input class="text" type="text" name="email"><br><br><br>
+        <label>Mot de pass:</label><br><br>
+        <input class="text" type="password" name="pass"><br><br><br>
+        <input class="submit" type="submit" name="submit" value="connexion">
+        <div>
+</form>
+<a href="formulaire.php">Créer un compte?</a>
+</body>
+</html>
