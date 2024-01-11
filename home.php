@@ -18,9 +18,9 @@ if(isset($_POST['submit']))
         <nav>
             <img width='150px' src="img/ensa1.png">
             <ul>
-                <li><a href="">Accueil</a></li>
+                <li><a href="home.php">Accueil</a></li>
                 <li><a href="detail.php">Nos Evenements</a></li>
-                <li><a href="formulaire.php">Authentification Admin</a></li>
+                <li><a href="authentification.php">Authentification admin</a></li>
             </ul><br>
            
         </div>
@@ -114,5 +114,6 @@ Le club d'échecs offre une passionnante exploration stratégique et intellectue
             </div>
         </div>
 </section>
+
 </body>
 </html>
