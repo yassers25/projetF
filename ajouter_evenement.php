@@ -1,5 +1,14 @@
 <?php 
 include('connexion.php');
+require 'C:/xampp/htdocs/ProjetwebF/PHPMailer-master/lib/Exception.php';
+require 'C:/xampp/htdocs/ProjetwebF/PHPMailer-master/lib/PHPMailer.php';
+require 'C:/xampp/htdocs/ProjetwebF/PHPMailer-master/lib/SMTP.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+
 session_start();
 if(isset($_POST['sub'])){
 	$titre=$_POST['titre'];
@@ -40,7 +49,47 @@ if(isset($_POST['sub'])){
 	}
 	$requette="INSERT INTO event (TITRE, DESCRIPTION,DATE,LOCATION,ID_CATEGORIE,ID_ADMIN,IMAGE) VALUES('$titre','$description','$date','$location','$id_categorie',$id_admin,'$ph_name')";
 	$resultat=mysqli_query($link,$requette);
-	header('location: index.php');
+
+ // Récupérez les e-mails des utilisateurs depuis la base de données
+ $result = mysqli_query($link, "SELECT EMAIL FROM user");
+ $liste_emails = array();
+ while ($row = mysqli_fetch_assoc($result)) {
+     $liste_emails[] = $row['EMAIL'];
+ }
+
+ // Envoyer un e-mail à chaque utilisateur
+ foreach ($liste_emails as $email) {
+     $mail = new PHPMailer(true);
+
+     try {
+         // Paramètres du serveur SMTP
+         $mail->isSMTP();
+         $mail->Host = 'smtp.gmail.com'; // Remplacez par le serveur SMTP approprié
+         $mail->SMTPAuth = true;
+         $mail->Username = '@gmail.com'; // Remplacez par votre adresse e-mail SMTP
+         $mail->Password = ''; // Remplacez par votre mot de passe SMTP
+         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+         $mail->Port = 587;
+
+         // Destinataire
+         $mail->setFrom('@gmail.com', 'prenom');
+         $mail->addAddress($email);
+
+         // Contenu de l'e-mail
+         $mail->isHTML(true);
+         $mail->Subject = "Nouvel evenement : $titre";
+         $mail->Body = "Bonjour,<br><br>Nous avons ajouté un nouvel événement \"$titre\" le $date à $location. Consultez-le sur notre site : <a href='http://localhost/ProjetwebF/events.php'>Cliquez ici</a>.<br><br>Cordialement,<br>Votre équipe organisatrice.";
+
+
+         // Envoyer l'e-mail
+         $mail->send();
+     } catch (Exception $e) {
+         // Gérer les erreurs
+         echo "Erreur lors de l'envoi de l'e-mail : {$mail->ErrorInfo}";
+     }
+ }
+
+	header('location: dashboard.php');
 }
 
 ?>
