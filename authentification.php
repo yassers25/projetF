@@ -74,7 +74,7 @@
 <body>
     <h1> Authentification </h1>
 
-    <form action="login.php" method="post">
+    <form action="login_admin.php" method="post">
         <label for="login">Login:</label>
         <input type="text" id="login" name="nom" required>
 
