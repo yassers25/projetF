@@ -38,7 +38,7 @@ $result = mysqli_query($link, $sql);
 
 <body class="fixed-nav ">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <nav class="navbar navbar-expand-lg bg-light fixed-top" id="mainNav" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;;background:grey;">
 
         <a class="navbar-brand" href="dashboard.php">Dashboard</a>
 
@@ -56,18 +56,12 @@ $result = mysqli_query($link, $sql);
 
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
 
-                    <a class="nav-link" href="dashboard.php">
-
-                        <i class="fa fa-fw fa-dashboard"></i>
-
-                        <span class="nav-link-text">Dashboard</span>
-
-                    </a>
+                    
 
                 </li>
 
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                    <a class="nav-link" href="product.php">
+                    <a class="nav-link" href="ajouter_categorie.php">
                         <i class="fa fa-check-square"></i>
                         <span class="nav-link-text">Ajouter Categorie</span>
                     </a>
