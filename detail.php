@@ -24,16 +24,14 @@
             <section id="title">
                 <h1>Détail de nos événements:</h1>
                 <div class="register">
-                    <form action="traitement.php" method="post" class="form">
-                        <input type="submit" value="Register">
-                    </form>
+                    
                 </div>
             </section>
 
             <?php
             include('connexion.php');
             session_start();
-            if (isset($_SESSION['email'])) {
+            if (isset($_SESSION['email']) && $_SESSION['loggedin']) {
                 $query = "SELECT e.ID_EVENT, e.TITRE, e.DESCRIPTION, e.DATE, e.LOCATION, c.TEXTE, u.NOM, u.PRENOM 
                             FROM event e
                             LEFT JOIN comment c ON e.ID_EVENT = c.ID_EVENT
@@ -61,10 +59,7 @@
 
                     echo '</div>';
                 }
-            } else {
-                echo "<p>Vous devez créer un compte d'abord!!</p>";
-                echo "<a class='com' href='formulaire.php'>Créer compte</a>";
-            }
+
             ?>
         </section>
     </div>
