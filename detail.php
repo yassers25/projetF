@@ -14,9 +14,9 @@
             <nav>
                 <img width='150px' src="img/ensa1.png">
                 <ul>
-                    <li><a href="">Accueil</a></li>
+                    <li><a href="home.php">Accueil</a></li>
                     <li><a href="detail.php">Nos Evenements</a></li>
-                    <li><a href="formulaire.php">Inscription</a></li>
+                    <li><a href="authentification.php">Authentification Admin</a></li>
                 </ul>
             </nav>
         </div>
@@ -59,7 +59,7 @@
 
                     echo '</div>';
                 }
-
+            }
             ?>
         </section>
     </div>
