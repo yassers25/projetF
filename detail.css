@@ -2,182 +2,68 @@
     font-family: font;
     src: url(fonts/LibreBaskerville-Regular.ttf);
 }
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #ebebeb;
-}
-
-.header {
-    background-color: #1b4353;
-    color: white;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-}
-
-.header img {
-    width: 100px;
-}
-
-.header nav {
-    display: flex;
-    align-items: center;
-    
-}
-
-.header ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    margin-left: auto; /* Pushes the ul to the far right */
-}
-
-.header li {
-    margin-left: 80px;
-    position : relative;
-    left : 800px;
-}
-.header nav li a:hover{
-    color : #7f7f7f;
-}
-
-.header a {
-    text-decoration: none;
-    color: white;
-    font-family: font,serif;
-    font-size: 16px;
-}
-section{
-    margin-top: 80px;
-}
-.section {
-    text-align: center;
-    margin: 20px 0;
-    
-}
-
-#title h1 {
-    text-align: center;
-    color: #1b4353;
-    font-family: font,serif;
-    font-size: 35px;
-}
-
-.register {
-    text-align: center;
-    margin: 20px 0;
-}
-
-.form input[type="submit"] {
-    background-color: #1b4353;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.form input[type="submit"]:hover {
-    background-color: #144267;
-}
-.card {
-    margin-left: 20px;
-    --border-radius: 0.75rem;
-    color: #144267;
-    width: 1450px;
-    font-family: "Arial";
-    padding: 1rem;
-    cursor: pointer;
-    border-radius: var(--border-radius);
-    background: #f1f1f3;
-    box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 3%);
-    position: relative;
-    margin-bottom: 30px;
-  }
-  
-  .card > * + * {
-    margin-top: 1.1em;
-  }
-  
-  .card .card__content {
-    color: #144267;
-  }
-  
-  .card .card__title {
-    padding: 0;
-    font-size: 1.3rem;
-    font-weight: bold;
-  }
-  
-  .card .card__date {
-    color: #6e6b80;
-    font-size: 0.8rem;
-    font-weight: bold;
-  }
-
-  
-  .card .card__arrow {
-    position: absolute;
-    background: var(--primary-color);
-    padding: 0.4rem;
-    border-top-left-radius: var(--border-radius);
-    border-bottom-right-radius: var(--border-radius);
-    bottom: 0;
-    right: 0;
-    transition: 0.2s;
+body{
+    width : 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
+    align-items : center;
+    margin:0;
+    background-color: #1b4353;
+}
+main{
+    display : flex;
+    justify-content: center;
     align-items: center;
-  }
-  
-  .card svg {
-    transition: 0.2s;
-  }
-  
-  /* hover */
-  .card:hover .card__title {
-    color: var(--primary-color);
-    text-decoration: underline;
-  }
-  .card:hover .card__arrow svg {
-    transform: translateX(3px);
-  }
-  .card .comment{
-    height : 20px;
-    width : 1300px;
-    padding : 0.4rem;
-    background-color: #f1f1f3;
-    border-width: 1px;
-    border-color: #e1e1f1;
-    border-style: solid;
+    gap : 1rem;
+    flex-direction: column;
+}
+form{
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    background-color: #ebebeb;
+    border-radius: 20px;
+    padding : 3rem 2.5rem;
+}
+
+input[type="text"], input[type="password"]{
+    padding: 0.4rem 0.8rem;
+    width : 250px;
     border-radius: 5px;
-    margin-right : 10px;
-  }
-  .ajout_comment{
-    padding-left : 10px;
-    padding-right : 10px;
-    padding-top : 5px;
-    padding-bottom : 5px;
-    border-color: #b2b2b6;
-    border-style: solid;
-    background-color:#f1f1f3 ;
-    border-width: 1px;
-    border-radius: 5px;
-  }
-  .com{
-    text-decoration: none;
-    color:#6e6b80;
-  }
-.card_img{
-  margin-left : 200px;
+    background-color: #ebebeb;
+    border : groove 2px #1b4353;
+    outline : none;
+    transition : 0.1s ease border-color;
+}
+input[type="text"]:focus, input[type="password"]:focus{
+    border-color : #08a5e3;
+}
+
+
+.submit{
+    cursor : pointer;
+    border-radius: 20px;
+    background-color: #0f749c;
+    color : white;
+    font-weight: 600;
+    text-transform :capitalize;
+    width: 100%;
+    padding : 0.5rem;
+    transition : 0.1s ease background-color, 0.1s ease color;
+}
+.submit:hover{
+    background-color: #139bd1;
+    border-color: white;
+}
+
+.action_container{
+    display : flex;
+    justify-content: center;
 }
 a{
-  text-decoration: none;
-  font-size: 1.5em;
-  color : #1b4353;
+    text-decoration: none;
+    color : #0f749c;
+    width : fit-content;
+}
+.message{
+    color : rgb(97, 9, 9);
 }
