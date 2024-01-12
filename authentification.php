@@ -1,87 +1,133 @@
+<?php
+session_start();
+include("connexion.php");
+if($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    $email = $_POST["email"];
+    $password = $_POST["pass"];
+    $query = "SELECT * FROM user WHERE EMAIL = '$email'";
+    $execute = mysqli_query($link,$query);
+    if(mysqli_num_rows($execute)>0)
+    {
+        $fetch = mysqli_fetch_assoc($execute);
+        if($password == $fetch['PASSWORD'])
+        {
+            $_SESSION['loggedin'] = true;
+            $_SESSION['email'] = $fetch['EMAIL'];
+            $_SESSION['ID_USER']=$fetch['ID_USER'];
+            header("Location: home.php");
+            exit();
+        }
+        else
+        {
+            echo "<p class='message'>Le mot de passe est incorrecte</p>";
+        }
+    }
+    else{
+        echo "<p class='message'>L'email n'existe pas</p>";
+    }
+    mysqli_close($link);
+}
+?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Authentification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        h1 {
-            text-align: center;
-        }
-        form {
-            max-width: 500px;
-            margin: auto;
-            padding: 50px;
-            background-color: #fff;
-            border-radius: 20px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            height: auto; 
-        }
-        label {
-            display: block;
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        input {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            font-size: 16px;
-            color: #555;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        button {
-            background-color: #FF9800;
-            color: white;
-            padding: 14px 24px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 20px;
-        }
-        button:hover {
-            background-color: #e66300;
-        }
-        .compte {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 18px;
-        }
-        .compte a {
-            color: #2196F3;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .compte a:hover {
-            color: #1565C0;
-            text-decoration: underline;
-        }
+        @font-face {
+    font-family: font;
+    src: url(fonts/LibreBaskerville-Regular.ttf);
+}
+nav {
+    margin-right: auto; /* Adjust this value as needed to move the image to the left */
+}
+
+body {
+    font-family: 'font', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #1b4353;
+}
+form{
+    border-width: 2px;
+    border-color: #bab8b8;
+    background-color: #ebebeb;
+    border-style: solid;
+    border-radius: 20px;
+    width : 300px;
+    height: 300px;
+    position : relative;
+    top : 150px;
+    margin-left: -80px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+label{
+    text-align: center;
+    margin-left: 25px;
+}
+.text{
+    margin-left: 20px;
+    height : 25px;
+    border-radius: 20px;
+    width : 0250px;
+    border-style: solid;
+    background-color: #ebebeb;
+    border-color: #1b4353;
+}
+.container{
+    margin-top: 40px;
+}
+
+.submit{
+    margin-left: 110px;
+    height : 30px;
+    width : 85px;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 0;
+    background-color: #1b4353;
+    color : #ebebeb;
+}
+.submit:hover{
+    background-color: #ebebeb;
+    border-color: #1b4353;
+    border-width: 2px;
+    border-style: solid;
+    color : #1b4353
+}
+input{
+    padding-left: 5px;
+}
+a{
+    text-decoration: none;
+    color : #1b4353;
+    margin-left : 10px;
+}
+.message{
+    color : white;
+}
     </style>
 </head>
 <body>
-    <h1> Authentification </h1>
-
-    <form action="login_admin.php" method="post">
-        <label for="login">Login:</label>
-        <input type="text" id="login" name="nom" required>
-
-        <label for="password">Mot de passe:</label>
-        <input type="password" id="password" name="password" required>
-
-        <button type="submit">Connexion</button>
-    </form>
+    <nav>
+    <img width='250px' src="img/ensa1.png">
+</nav>
+    <form action="#" method="post">
+        <div class="container">
+        <label>Email:</label><br><br>
+        <input class="text" type="text" name="email"><br><br><br>
+        <label>Mot de pass:</label><br><br>
+        <input class="text" type="password" name="pass"><br><br><br>
+        <input class="submit" type="submit" name="submit" value="connexion">
+        <div>
+</form>
+<a href="formulaire.php">Créer un compte?</a>
 </body>
 </html>
