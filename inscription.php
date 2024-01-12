@@ -1,150 +1,98 @@
 <?php
 session_start();
-include("connexion.php");
 
-$listeEvenements = array();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Récupérer le nombre d'événements souhaités par le participant
+    $nombreEvenements = isset($_POST['nombre_evenements']) ? intval($_POST['nombre_evenements']) : 0;
 
-// Requête SQL pour récupérer les événements depuis la base de données
-$query = "SELECT ID_EVENT, TITRE FROM event";
-$result = mysqli_query($link, $query);
+    // Stocker le nombre d'événements dans la session
+    $_SESSION['nombre_evenements'] = $nombreEvenements;
 
-// Vérifier si la requête a réussi
-if ($result) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $listeEvenements[] = $row;
-    }
-} else {
-    echo "Erreur lors de l'exécution de la requête : " . mysqli_error($link);
-}
-if (isset($_POST['sub'])) {
-    // Récupérer le nombre d'événements depuis le formulaire
-    $nombreEvenements = $_POST['nombre_evenements'];
-
-    // Boucle pour traiter chaque choix d'événement
-    for ($i = 1; $i <= $nombreEvenements; $i++) {
-        // Récupérer l'ID de l'événement sélectionné depuis le formulaire
-        $idEvenement = $_POST['evenement' . $i];
-        $ID_USER = $_SESSION['ID_USER'];
-
-        // Afficher les valeurs pour débogage
-        echo "ID_USER : $ID_USER, ID_EVENT : $idEvenement <br>";
-
-        // Votre requête d'insertion dans la table inscription
-        $insertQuery = "INSERT INTO inscription (ID_USER, ID_EVENT) VALUES ('$ID_USER', '$idEvenement')";
-
-        // Exécuter la requête
-        $result = mysqli_query($link, $insertQuery);
-
-        // Vérifier si l'insertion a réussi
-        if (!$result) {
-            echo "Erreur lors de l'insertion : " . mysqli_error($link);
-        } else {
-            echo "Insertion réussie <br>";
-        }
-    }
-
-    // Fermer la connexion à la base de données
-    mysqli_close($link);
-
-    // Rediriger l'utilisateur vers une page de confirmation
-    header("Location: confirmation.php");
-    exit;
+    // Rediriger vers la page suivante où les événements seront sélectionnés
+    header("Location: selection_evenements.php");
+    exit();
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription à un événement</title>
+    <title>Sélection du nombre d'événements</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    text-align: center;
+}
 
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+h1 {
+    color: #1b4353;
+}
 
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
+form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
 
-        select, input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 15px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
+label {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: left;
+}
 
-        input[type="submit"] {
-            background-color: #4caf50;
-            color: #fff;
-            cursor: pointer;
-        }
+input {
+    width: calc(100% - 24px);
+    padding: 12px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
 
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
+input[type="submit"] {
+    background-color: #1b4353;
+    color: white;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+input[type="submit"]:hover {
+    background-color: #1565C0;
+}
+
+/* Style facultatif pour rendre le champ de saisie plus attrayant */
+input:focus {
+    outline: none;
+    border: 1px solid #1b4353;
+    box-shadow: 0 0 5px rgba(27, 67, 83, 0.5);
+}
+
     </style>
-    <script>
-        // Fonction pour afficher dynamiquement les listes déroulantes en fonction du nombre choisi
-        function afficherListesDeroulantes() {
-            var nombreEvenements = document.getElementById('nombre_evenements').value;
-            var conteneurListes = document.getElementById('conteneur_listes_deroulantes');
-            conteneurListes.innerHTML = '';
-
-            for (var i = 1; i <= nombreEvenements; i++) {
-                var select = document.createElement('select');
-                select.name = 'evenement' + i;
-                select.id = 'evenement' + i;
-
-                <?php foreach ($listeEvenements as $evenement): ?>
-                    var option = document.createElement('option');
-                    option.value = '<?php echo $evenement['ID_EVENT']; ?>';
-                    option.text = '<?php echo $evenement['TITRE']; ?>';
-                    select.appendChild(option);
-                <?php endforeach; ?>
-
-                var label = document.createElement('label');
-                label.htmlFor = 'evenement' + i;
-                label.innerHTML = 'Choix de l\'événement ' + i + ' : ';
-
-                conteneurListes.appendChild(label);
-                conteneurListes.appendChild(select);
-                conteneurListes.appendChild(document.createElement('br'));
-            }
-        }
-    </script>
 </head>
 <body>
-    
+    <h1>Sélection du nombre d'événements</h1>
 
-<!-- Formulaire pour choisir le nombre d'événements -->
-<form method="post" action="traitement.php"> <!-- Remplacez "traitement.php" par le script qui traitera le formulaire -->
-    <label for="nombre_evenements">Choisissez le nombre d'événements :</label>
-    <input type="number" name="nombre_evenements" id="nombre_evenements" min="1" onchange="afficherListesDeroulantes()" required>
-    
-    <!-- Conteneur pour les listes déroulantes générées dynamiquement -->
-    <div id="conteneur_listes_deroulantes"></div>
+    <form action="#" method="post">
+        <label for="nombre_evenements">Entrez le nombre d'événements auxquels vous souhaitez participer :</label>
+        <input type="number" name="nombre_evenements" required min="1">
 
-    <!-- Bouton pour soumettre les choix -->
-    <input type="submit" value="Soumettre les choix" name="sub">
-</form>
-
+        <input type="submit" value="Continuer">
+    </form>
 </body>
 </html>
