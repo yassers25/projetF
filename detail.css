@@ -173,3 +173,11 @@ section{
     text-decoration: none;
     color:#6e6b80;
   }
+.card_img{
+  margin-left : 200px;
+}
+a{
+  text-decoration: none;
+  font-size: 1.5em;
+  color : #1b4353;
+}
