@@ -1,152 +1,304 @@
 @font-face {
-    font-family: "baskerville";
-    src: url('Libre_Baskerville/LibreBaskerville-Regular.ttf');
-  }
-  
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "baskerville", sans-serif;
-  }
-  
-  body {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: url(img/ensapic.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  
-  .overlay-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    text-align: center;
-  }
-  
-  .overlay-container img {
-    width: 100px;
-    height: 80px;
-  }
-  
-  .container {
-    position: relative;
-    max-width: 1000px;
-    background: #ebebeb;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 3px 3px 5px #1b4353;
-    width: 984px;
-  }
-  
-  section h1 {
-    color: #1b4353;
-    text-align: center;
-  }
-  
-  .container .form {
-    margin-top: 30px;
-  }
-  
-  .form .input-box {
-    width: 100%;
-    margin-top: 20px;
-  }
-  
-  .input-box label {
-    color: #225468;
-    font-size: 15px;
-  }
-  
-  .form .input-box input {
-    position: relative;
-    height: 50px;
-    width: 100%;
-    outline: none;
-    font-size: 12px;
-    color: #707070;
-    margin-top: 8px;
-    border: 1px solid #cdcccc;
-    border-radius: 10px;
-    padding: 0 15px;
-  }
-  
-  .input-box input:focus {
-    box-shadow: 1px 5px 0.5px   #1b435337;
-  }
-  
-  .form .column {
-    display: flex;
-    column-gap: 15px;
-  }
-  
-  .form .gender-box {
-    margin-top: 20px;
-  }
-  
-  .gender-box h3 {
-    color: #225468;
-    font-size: 15px;
-    font-weight: 400;
-    margin-bottom: 8px;
-  }
-  
-  .form :where(.gender-option, .gender) { 
-    display: flex;
-    align-items: center;
-    column-gap: 50px;
-    flex-wrap: wrap;
-  }
-  
-  .form .gender {
-    column-gap: 7px;
-    margin-left: 40px;
-    margin-right: 40px;
-  }
-  
-  .gender input {
-    accent-color: #225468; 
-  }
-  
-  .form :where(.gender input, .gender label) {
-    cursor: pointer;
-  }
-  
-  .gender label {
-    color: #615f5f;
-  }
-  
-  .address input {
-    margin-top: 15px;
-  }
-  
-  .register input{
-    height: 55px;
-    width: 100%;
-    color: #ebebeb;
-    font-size: 20px;
-    font-weight: 400;
-    margin-top: 30px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    background: #1b4353;
-  }
-  .register :hover {
-    background: #377993;
-  }
-  
-  @media screen and (max-width: 500px) {
-    .form .column {
-      flex-wrap: wrap;
-    }
-    .form :where(.gender-option, .gender) {
-      row-gap: 15px;
-    }
+  font-family: "baskerville";
+  src: url('Libre_Baskerville/LibreBaskerville-Regular.ttf');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "baskerville", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: url(img/ensapic.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+}
+
+.overlay-container img {
+  width: 100px;
+  height: 80px;
+}
+
+.container {
+  position: relative;
+  max-width: 1000px;
+  background: #ebebeb;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 3px 3px 5px #1b4353;
+  width: 984px;
+}
+
+section h1 {
+  color: #1b4353;
+  text-align: center;
+}
+
+.container .form {
+  margin-top: 30px;
+}
+
+.form .input-box {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.input-box label {
+  color: #225468;
+  font-size: 15px;
+}
+
+.form .input-box input {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  outline: none;
+  font-size: 12px;
+  color: #707070;
+  margin-top: 8px;
+  border: 1px solid #cdcccc;
+  border-radius: 10px;
+  padding: 0 15px;
+}
+
+.input-box input:focus {
+  box-shadow: 1px 5px 0.5px   #1b435337;
+}
+
+.form .column {
+  display: flex;
+  column-gap: 15px;
+}
+
+.form .gender-box {
+  margin-top: 20px;
+}
+
+.gender-box h3 {
+  color: #225468;
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.form :where(.gender-option, .gender) { 
+  display: flex;
+  align-items: center;
+  column-gap: 50px;
+  flex-wrap: wrap;
+}
+
+.form .gender {
+  column-gap: 7px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.gender input {
+  accent-color: #225468; 
+}
+
+.form :where(.gender input, .gender label) {
+  cursor: pointer;
+}
+
+.gender label {
+  color: #615f5f;
+}
+
+.address input {
+  margin-top: 15px;
+}
+
+/* .register input{ 
+  /* height: 55px; 
+  /* width: 100%; 
+  /* color: #ebebeb; 
+  font-size: 20px;
+  font-weight: 400;
+  margin-top: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #1b4353;
+ } 
+ .register :hover { 
+  background: #377993;
+} */
+
+
+.register,
+.register *,
+.register :after,
+.register :before,
+.register:after,
+.register:before {
+  border: 0 solid;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.register {
+  -webkit-tap-highlight-color: transparent;
+  background-color: #1b4353;
+  background-image: none;
+  color: #377993;
+  cursor: pointer;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 100%;
+  font-weight: 900;
+  line-height: 1.5;
+  margin: 0;
+  /* -webkit-mask-image: -webkit-radial-gradient(#1b4353, #377993); */
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.register:disabled {
+  cursor: default;
+}
+
+.register:-moz-focusring {
+  outline: auto;
+}
+
+.register [hidden] {
+  display: none;
+}
+
+.register {
+  margin-top: 20px;
+  border-radius: 99rem;
+  border-width: 2px;
+  padding: 0.8rem 3rem;
+  z-index: 0;
+}
+
+.register,
+.register .text-container {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register .text-container {
+  display: block;
+  mix-blend-mode: difference;
+  text-align: center;
+  flex: 1;
+}
+
+.register .text {
+  display: block;
+  position: relative;
+  text-align: center;
+  background-color: #1b4353;
+  color: #377993;
+  font-family: baskerville;
+  font-weight: bold;
+}
+
+.register:hover .text {
+  -webkit-animation: move-up-alternate 0.3s forwards;
+  animation: move-up-alternate 0.3s forwards;
+  text-align: center;
+}
+
+@-webkit-keyframes move-up-alternate {
+  0% {
+    transform: translateY(0);
   }
 
-  
+  50% {
+    transform: translateY(80%);
+  }
+
+  51% {
+    transform: translateY(-80%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes move-up-alternate {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(80%);
+  }
+
+  51% {
+    transform: translateY(-80%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+.register:after,
+.register:before {
+  --skew: 0.2;
+  background: #377993;
+  content: "";
+  display: block;
+  height: 102%;
+  left: calc(-50% - 50% * var(--skew));
+  pointer-events: none;
+  position: absolute;
+  top: -104%;
+  transform: skew(calc(150deg * var(--skew))) translateY(var(--progress, 0));
+  transition: transform 0.2s ease;
+  width: 100%;
+}
+
+.register:after {
+  --progress: 0%;
+  left: calc(50% + 50% * var(--skew));
+  top: 102%;
+  z-index: -1;
+}
+
+.register:hover:before {
+  --progress: 100%;
+  background-color: #377993;
+}
+
+.register:hover:after {
+  --progress: -102%;
+  background-color: #377993;
+}
+
+
+
+@media screen and (max-width: 500px) {
+  .form .column {
+    flex-wrap: wrap;
+  }
+  .form :where(.gender-option, .gender) {
+    row-gap: 15px;
+  }
+}
+
