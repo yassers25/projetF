@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="event_style.css">
+  <link rel="stylesheet" href="event_styles.css">
   <title>Events</title>
 </head>
 
@@ -20,7 +20,7 @@
       <img src="images/cropped-ensak-logo.png">
     </div>
     <ul>
-      <li><a href="events.php">Home</a></li>
+      <li><a href="home.php">Home</a></li>
       <li><a href="login.php">Login</a></li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -77,56 +77,44 @@
         </div>
       </div>
     </div>
+    <main>
+        <div class="sec">
+            <h2 class="titre"
+                style="font-size:40px;padding-top:4rem;font-family:Montserrat;margin-bottom:4rem;display:flex;justify-content:center;color:white;font-weight:aliceblue;">
+                Nos Événement</h2>
+            <div class="cards">
+                <?php
+                $sql = "SELECT * FROM event";
+                $result = mysqli_query($link, $sql);
 
-    <div class="sec">
-      <h2 class="titre"
-        style="font-size:40px;padding-top:4rem;font-family:Montserrat;margin-bottom:4rem;display:flex;justify-content:center;color:white;font-weight:aliceblue;">
-        Nos Événement</h2>
-      <div class="cards">
-
-        <?php
-
-        $sql = "SELECT * FROM event";
-        $result = mysqli_query($link, $sql);
-        if (mysqli_num_rows($result) > 0) {
-          while ($row = mysqli_fetch_assoc($result)) {
-            ?>
-
-            <div class="card" style="width: 18rem;">
-              <a href="detail.php">
-                <div class="card-body">
-                  <?php
-                  echo '<img src="images/' . $row['IMAGE'] . '" alt="Event Image" style="width: 250px;">';
-                  ?>
-
-                  <p class="card-text nom">
-                    <?php echo $row['TITRE']; ?>
-                  </p>
-                  <p class="card-text descr">
-                    <?php echo $row['DESCRIPTION']; ?>
-                  </p>
-                  <p class="card-text date">
-                    <?php echo "Date: " . $row['DATE']; ?>
-                  </p>
-
-                </div>
-                <button class="card-button">More info</button>
-              </a>
-
+                if (mysqli_num_rows($result) > 0) {
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<div class='card' style='width: 18rem;'>";
+                    echo "<a href='detail.php'>";
+                    echo "<div class='card-body'>";
+                    echo "<img src='images/{$row['IMAGE']}' alt='Event Image' style='width: 250px;'>";
+                    echo "<p class='card-text nom'>{$row['TITRE']}</p>";
+                    echo "<p class='card-text descr'>{$row['DESCRIPTION']}</p>";
+                    echo "<p class='card-text date'>Date: {$row['DATE']}</p>";
+                    echo "</div>";
+                
+                    // Intégration de la carte statique
+                    echo "<a href='https://www.google.com/maps/place/{$row['LOCATION']}' target='_blank'>";
+                    echo "<img class='static-map' src='https://maps.googleapis.com/maps/api/staticmap";
+                    echo "?center=" . urlencode($row['LOCATION']);
+                    echo "&zoom=14&size=400x300&markers=" . urlencode($row['LOCATION']);
+                    echo "&key=AIzaSyBoOHltGZJotjevTOgiapTzimAi_LGdA2k' alt='Carte Statique' />";
+                    echo "</a>";
+                
+                    echo "<button class='card-button'>More info</button>";
+                    echo "</a></div>";
+                }
+                }
+                mysqli_close($link);
+                ?>
             </div>
-
-            <?php
-          }
-        }
-        mysqli_close($link);
-        ?>
-
-      </div>
-    </div>
-
-
-
-
+        </div>
+    </main>
   </main>
 
 
@@ -149,7 +137,7 @@
             <li><a href="https://www.linkedin.com/in/sara-foukhar-65431b237/">Foukhar Sara</a></li>
             <li><a href="#">Salhi Yasser</a></li>
             <li><a href="#">Semmar Rihab</a></li>
-            <li><a href="#">Seddiqe Douaa</a></li>
+            <li><a href="#">Saddiqe Douaa</a></li>
           </ul>
 
         </details>
@@ -166,7 +154,7 @@
             <li><a href="#">Foukhar Sara</a></li>
             <li><a href="#">Salhi Yasser</a></li>
             <li><a href="#">Semmar Rihab</a></li>
-            <li><a href="#">Seddiqe Douaa</a></li>
+            <li><a href="#">Saddiqe Douaa</a></li>
           </ul>
 
         </details>
@@ -178,16 +166,17 @@
 
             </a>
           </summary>
+
           <ul>
+            
             <li><a href="https://github.com/FoukharSara">Foukhar Sara</a></li>
             <li><a href="#">Salhi Yasser</a></li>
             <li><a href="#">Semmar Rihab</a></li>
-            <li><a href="#">Seddiqe Douaa</a></li>
+            <li><a href="#">Saddiqe Douaa</a></li>
           </ul>
 
         </details>
       </div>
-
 
 
 
