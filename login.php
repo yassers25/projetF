@@ -18,7 +18,8 @@
             <input class="text" type="password" name="pass"><br><br><br>
             <input class="submit" type="submit" name="submit" value="connexion">
             <div class="action_container">
-                <a href="formulaire.php">Créer un compte?</a>
+                <a href="formulaire.php">Créer un compte?</a><br>
+                <a href="authentification.php">Admin</a>
             </div>
             <div class="message_container">
                 <?php
