@@ -52,14 +52,15 @@ if (isset($_GET['Envoyer'])) {
                     <li><a href="home.php">Accueil</a></li>
                     <li><a href="events.php">Nos Evenements</a></li>
                     <li><a href="authentification.php">Admin</a></li>
+                    <li><a href="deconnexion_etudiant.php">Deconnexion</a></li>
                 </ul>
             </nav>
         </div>
         <section>
             <section id="title">
-                <h1>Détail de nos événements:</h1>
+                <h1>Détails de nos événements:</h1>
                 <div class="register">
-                    <a href="inscription.php">Pour s'inscrir dans un événement consulter cette page</a>
+                    <a class="cry" href="inscription.php">S'inscrir a un evenement</a>
                 </div>
             </section>
 
@@ -82,16 +83,16 @@ if (isset($_GET['Envoyer'])) {
                         echo '<img class="card_img" width="100px" src="photo/' . $row['IMAGE'] . '">';
                         echo '<div class="m">';
                         echo '<h2 class="card__content">' . $row['TITRE'] . '</h2>';
-                        echo '<p class="card__content">Description :' . $row['DESCRIPTION'] . '</p>';
-                        echo '<p class="card__date">Date : ' . $row['DATE'] . '</p>';
-                        echo '<p>Location: ' . $row['LOCATION'] . '</p>';
+                        echo '<p class="card__content"><h4>Description</h4>' . $row['DESCRIPTION'] . '</p>';
+                        echo '<p class="card__date"><h4>Date</h4></p>' . $row['DATE'];
+                        echo '<p><h4>Location</h4> ' . $row['LOCATION'] . '</p>';
 
                         // Add Comment Form
                         echo '<form action="detail.php" method="get">';
                         echo '<input type="hidden" name="idevent" value="' . $row['ID_EVENT'] . '">';
-                        echo '<label>Ajouter un commentaire :</label><br><br>';
+                        echo '<label><h3>Ajouter un commentaire </h3></label>';
                         echo '<input class="comment" type="text" name="comment" placeholder="Votre commentaire">';
-                        echo '<input class="ajout_comment" type="submit" name="Envoyer" value="Ajouter Commentaire">';
+                        echo '<input class="ajout_comment" type="submit" name="Envoyer" value="Ajouter un commentaire">';
                         echo '</form>';
 
                         $currentEventID = $row['ID_EVENT'];
@@ -99,12 +100,12 @@ if (isset($_GET['Envoyer'])) {
 
                     if ($row['TEXTE'] != NULL) {
                         // Print comments only if there are any
-                        echo '<h3>Commentaires:</h3>';
+                        echo '<h3>Liste des commentaires</h3>';
                         echo '<ul>';
                         do {
                             // Check if $row is not null before accessing its values
                             if ($row !== null) {
-                                echo '<li>' . strtoupper($row['NOM']) . ' ' . strtoupper($row['PRENOM']) . ': ' . $row['TEXTE'] . '</li>';
+                                echo '<li>' . strtoupper($row['NOM']) . ' ' . strtoupper($row['PRENOM']) . ' : ' . $row['TEXTE'] . '</li><br>';
                             }
                         } while (($row = mysqli_fetch_assoc($result)) !== null && $row['ID_EVENT'] == $currentEventID);
                         echo '</ul>';
