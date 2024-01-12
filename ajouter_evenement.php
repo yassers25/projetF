@@ -1,8 +1,8 @@
 <?php 
 include('connexion.php');
-require 'C:/xampp/htdocs/ProjetwebF/PHPMailer-master/lib/Exception.php';
-require 'C:/xampp/htdocs/ProjetwebF/PHPMailer-master/lib/PHPMailer.php';
-require 'C:/xampp/htdocs/ProjetwebF/PHPMailer-master/lib/SMTP.php';
+require 'PHPMailer-master/lib/Exception.php';
+require 'PHPMailer-master/lib/PHPMailer.php';
+require 'PHPMailer-master/lib/SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -47,8 +47,10 @@ if(isset($_POST['sub'])){
 	else{
 		$ph_name="inconnu.jpg";
 	}
-	$requette="INSERT INTO event (TITRE, DESCRIPTION,DATE,LOCATION,ID_CATEGORIE,ID_ADMIN,IMAGE) VALUES('$titre','$description','$date','$location','$id_categorie',$id_admin,'$ph_name')";
+	$requette="INSERT INTO event (TITRE,DESCRIPTION,DATE,LOCATION,ID_CATEGORIE,ID_ADMIN,IMAGE) VALUES('$titre','$description','$date','$location','$id_categorie',$id_admin,'$ph_name')";
 	$resultat=mysqli_query($link,$requette);
+
+
 
  // Récupérez les e-mails des utilisateurs depuis la base de données
  $result = mysqli_query($link, "SELECT EMAIL FROM user");
@@ -66,20 +68,19 @@ if(isset($_POST['sub'])){
          $mail->isSMTP();
          $mail->Host = 'smtp.gmail.com'; // Remplacez par le serveur SMTP approprié
          $mail->SMTPAuth = true;
-         $mail->Username = '@gmail.com'; // Remplacez par votre adresse e-mail SMTP
-         $mail->Password = ''; // Remplacez par votre mot de passe SMTP
+         $mail->Username = 'yassersalhi017@gmail.com'; // Remplacez par votre adresse e-mail SMTP
+         $mail->Password = 'jdmv inux xwfd kqqu'; // Remplacez par votre mot de passe SMTP
          $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
          $mail->Port = 587;
 
          // Destinataire
-         $mail->setFrom('@gmail.com', 'prenom');
+         $mail->setFrom('yassersalhi017@gmail.com', 'Yasser');
          $mail->addAddress($email);
 
          // Contenu de l'e-mail
          $mail->isHTML(true);
          $mail->Subject = "Nouvel evenement : $titre";
-         $mail->Body = "Bonjour,<br><br>Nous avons ajouté un nouvel événement \"$titre\" le $date à $location. Consultez-le sur notre site : <a href='http://localhost/ProjetwebF/events.php'>Cliquez ici</a>.<br><br>Cordialement,<br>Votre équipe organisatrice.";
-
+         $mail->Body = "Bonjour,<br><br>Nous avons ajouté un nouvel événement \"$titre\" le $date à $location.Consultez-le sur notre site : <a href='http://localhost/projetensa/events.php'>events</a> !<br><br>Cordialement,<br>Votre équipe organisatrice.";
 
          // Envoyer l'e-mail
          $mail->send();
@@ -89,7 +90,7 @@ if(isset($_POST['sub'])){
      }
  }
 
-	header('location: dashboard.php');
+	header('location: index.php');
 }
 
 ?>
@@ -100,9 +101,13 @@ if(isset($_POST['sub'])){
     <meta charset="utf-8" />
     <title>Ajouter un évenement</title>
     <style>
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f0f0;
+            background-image: url('images/ensa2.jpeg'); /* Remplacez 'votre_image.jpg' par le nom de votre image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -120,7 +125,12 @@ if(isset($_POST['sub'])){
         }
 
         h1 {
+            color:white;
+            padding: 8px;
+            font-size: 40x;
             text-align: center;
+            text-transform: capitalize;
+            background-color: #1b4353;
         }
 
         label {
@@ -143,7 +153,7 @@ if(isset($_POST['sub'])){
         input[type="submit"] {
             width: 100%;
             padding: 9px;
-            background-color: #4CAF50;
+            background-color: #1b4353;
             color: white;
             border: none;
             border-radius: 5px;
@@ -151,26 +161,43 @@ if(isset($_POST['sub'])){
             font-size: 16px;
         }
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: #1565C0;
         }
+        textarea {
+    width: 90%;
+    height: 90px; /* Adjust the height as needed */
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    box-sizing: border-box;
+    resize: vertical; /* Allow vertical resizing */
+}
+input::placeholder,
+textarea::placeholder {
+    color: #1b4353; /* Placeholder text color */
+    font-size: 14px; /* Placeholder font size */
+}
+
+
     </style>
 	</head>
     <body>
 		<h1>ajouter un évenement</h1>
 		<form action="" method="post" id="monform" enctype="multipart/form-data">
-            <label for="titre">Titre:</label>
-            <input type="text" name="titre" required>
+            <label for="titre">Titre</label>
+            <input type="text" name="titre" placeholder="Saisissez le titre" required>
 
-			<label for="description">Description:</label>
-            <textarea name="description" rows="6" cols="95" required></textarea>
+			<label for="description">Description</label>
+            <textarea name="description" placeholder="Saisissez la description" required></textarea>
 
-			<label for="date">Date:</label>
+			<label for="date">Date</label>
             <input type="date" name="date" required>
 
-            <label for="location">Location:</label>
-            <input type="text" name="location" required>
+            <label for="location">Location</label>
+            <input type="text" name="location" placeholder="Saisissez la location" required>
 
-            <label for="id_categorie">Catégorie:</label>
+            <label for="id_categorie">Catégorie</label>
             <select name="id_categorie" required>
                 <?php
             $result= mysqli_query($link, "SELECT* FROM categorie");
@@ -179,7 +206,7 @@ if(isset($_POST['sub'])){
             }
             ?>
             
-			<label for="fichier">Image:</label>
+			<label for="fichier">Image</label>
 			<input type="file" name="fichier"/>
 			<input type="submit" name="sub" value="Valider" style="width: 200px;text-align: center;"/>
 		</form>
