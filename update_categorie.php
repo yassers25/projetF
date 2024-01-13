@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["categoryId"])) {
     $query = "UPDATE categorie SET LABEL='$name' WHERE ID_CATEGORIE = $categoryId";
     
     if (mysqli_query($link, $query)) {
-        header("location: /projetf/dashboard.php");
+        header("location:dashboard.php");
     } else {
         echo "Error: " . $query . "<br>" . mysqli_error($link);
     }
