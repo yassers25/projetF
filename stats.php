@@ -1,8 +1,9 @@
 <?php
 session_start();
 include("connexion.php");
+if(isset($_SESSION['loggedin'])&& $_SESSION['loggedin'] == true){
 
-// Function to get events for a specific day
+
 function getEventsForDay($date, $link)
 {
     $events = array();
@@ -18,7 +19,6 @@ function getEventsForDay($date, $link)
     return $events;
 }
 
-// Function to get events for a specific month
 function getEventsForMonth($year, $month, $link)
 {
     $events = array();
@@ -244,3 +244,8 @@ function getUsersForEvent($eventId, $link)
 </body>
 
 </html>
+<?php
+}else{
+    header("location: authentification_admin.php");
+}
+?>
