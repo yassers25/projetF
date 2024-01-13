@@ -206,7 +206,6 @@ include("connexion.php");
                     echo "<div class='card-body'>";
                     echo "<img class='card_image' src='photo/{$row['IMAGE']}' alt='Event Image' style='width: 250px;'>";
                     echo "<p class='card-text nom'>{$row['TITRE']}</p>";
-                    echo "<p class='card-text descr'>{$row['DESCRIPTION']}</p>";
                     echo "<p class='card-text date'>Date: {$row['DATE']}</p>";
                     echo "</div>";
                     echo "<div class='card-text card-map'>";
