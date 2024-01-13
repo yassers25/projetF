@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["eventId"])) {
     $query = "UPDATE event SET TITRE='$name', DESCRIPTION='$desc', DATE='$date', LOCATION='$local' WHERE ID_EVENT = $eventId";
     
     if (mysqli_query($link, $query)) {
-        header("location: /projetf/dashboard.php");
+        header("location:dashboard.php");
     } else {
         echo "Error: " . $query . "<br>" . mysqli_error($link);
     }
