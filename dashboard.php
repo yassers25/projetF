@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(isset($_SESSION['ADMIN'])&&$_SESSION['ADMIN']==true){
+
+
 include("connexion.php");
 
 $search = isset($_GET['category_search']) ? $_GET['category_search'] : '';
@@ -486,3 +489,8 @@ h3.activated{
 </body>
 
 </html>
+<?php
+}else{
+    header("location: authentification_admin.php");
+}
+?>
