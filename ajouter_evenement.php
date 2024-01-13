@@ -104,7 +104,7 @@ if(isset($_POST['sub'])){
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-image: url('images/ensa2.jpeg'); /* Remplacez 'votre_image.jpg' par le nom de votre image */
+            background-image: url('images/ensa2.jpeg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
