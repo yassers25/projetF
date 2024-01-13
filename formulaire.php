@@ -78,18 +78,18 @@ if(isset($_POST['sub'])){
 
     <form action="" method="post" class="form"  id="monform" enctype="multipart/form-data">
       <div class="input-box">
-        <label for="NOM">Nom</label>
+        <label for="NOM">Nom:</label>
         <input type="text" placeholder="Entrer le nom" name="NOM" required/>
       </div>
 
       <div class="input-box">
-        <label for="PRENOM">Prenom</label>
+        <label for="PRENOM">Prenom:</label>
         <input type="text" placeholder="Entrer prenom" name="PRENOM" required/>
       </div>
 
       <div class="column">
         <div class="input-box">
-          <label for="TEL">Numero de telephone</label>
+          <label for="TEL">Numero de telephone:</label>
           <input type="number" placeholder="Entrer numero de telephone" name="TEL" required />
         </div>
         <div class="input-box">
@@ -97,11 +97,11 @@ if(isset($_POST['sub'])){
           <input type="date" placeholder="Entrer la date de naissance" name="DATE_NAISSANCE" required/>
         </div>
         <div class="input-box">
-          <label for="PASSWORD">Password</label>
+          <label for="PASSWORD">Password:</label>
           <input type="password" name="PASSWORD" placeholder="Entrer le mot de passe" required/>
         </div>
         <div class="input-box">
-          <label for="EMAIL">Email</label>
+          <label for="EMAIL">Email:</label>
           <input type="email" name="EMAIL" placeholder="Entrer l'email" required/>
         </div>
       </div>
@@ -119,15 +119,15 @@ if(isset($_POST['sub'])){
         </div>
       </div>
       <div class="input-box address">
-        <label for="ADRESSE">Address</label>
+        <label for="ADRESSE">Address: </label>
         <input type="text" placeholder="Entrer votre address" name="ADRESSE" required/>
       </div>
       <div class="input-box">
-            <label for="fichier">Photo</label>
+            <label for="fichier">Photo:</label>
             <input type="file" name="fichier" />
         </div>
       <div class="register">
-        <input class="text" type="submit" value="Register" name="sub">
+        <input type="submit" value="Register" name="sub">
       </div>
     </form>
   </section>
