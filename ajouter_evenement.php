@@ -90,7 +90,7 @@ if(isset($_POST['sub'])){
      }
  }
 
-	header('location: index.php');
+	header('location:dashboard.php');
 }
 
 ?>
@@ -104,7 +104,7 @@ if(isset($_POST['sub'])){
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-image: url('images/ensa2.jpeg');
+            background-image: url('images/ensa2.jpeg'); /* Remplacez 'votre_image.jpg' par le nom de votre image */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -172,12 +172,49 @@ if(isset($_POST['sub'])){
     padding: 5px;
     box-sizing: border-box;
     resize: vertical; /* Allow vertical resizing */
-}
+        }
 input::placeholder,
 textarea::placeholder {
     color: #1b4353; /* Placeholder text color */
     font-size: 14px; /* Placeholder font size */
-}
+        }
+        #buttons-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        #buttons-container button {
+            width: calc(50% - 5px);
+            padding: 12px; /* Increased padding for a larger size */
+            background-color: #1b4353;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #dashboard-link {
+            width: calc(50% - 5px);
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #dashboard-link a {
+            width: 100%;
+            padding: 12px;
+            background-color: #1b4353;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+        }
 
 
     </style>
@@ -208,8 +245,17 @@ textarea::placeholder {
             
 			<label for="fichier">Image</label>
 			<input type="file" name="fichier"/>
-			<input type="submit" name="sub" value="Valider" style="width: 200px;text-align: center;"/>
+            <div id="buttons-container">
+            <input type="submit" name="sub" value="Valider" style="width: 200px;text-align: center;">
+            <div id="dashboard-link">
+                <a href="dashboard.php">
+                    Retourner au tableau de bord
+                </a>
+            </div>
+            </div>
+
 		</form>
+    
 	</body>
 </html>
 <?php mysqli_close($link); ?>
