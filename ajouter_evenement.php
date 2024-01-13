@@ -11,11 +11,11 @@ use PHPMailer\PHPMailer\Exception;
 
 session_start();
 if(isset($_POST['sub'])){
-	$titre=$_POST['titre'];
-	$description=$_POST['description'];
-	$date=$_POST['date'];
-    $location=$_POST['location'];
-    $id_categorie=$_POST['id_categorie'];
+	$titre = mysqli_real_escape_string($link, $_POST['titre']);
+$description = mysqli_real_escape_string($link, $_POST['description']);
+$date = mysqli_real_escape_string($link, $_POST['date']);
+$location = mysqli_real_escape_string($link, $_POST['location']);
+$id_categorie = mysqli_real_escape_string($link, $_POST['id_categorie']);
     $id_admin=$_SESSION['ID_ADMIN'];
 	
 	if(isset($_FILES['fichier']) and $_FILES['fichier']['error']==0)
