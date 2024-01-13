@@ -157,7 +157,7 @@ include("connexion.php");
             <ul>
                 <li><a href="home.php">Accueil</a></li>
                 <li><a href="events.php">Événements</a></li>
-                <li><a href="authentification.php">Admin</a></li>
+                <li><a href="authentification_admin.php">Admin</a></li>
                 <li><a href="deconnexion_etudiant.php">Déconnexion</a></li>
             </ul>
         </nav>
@@ -221,6 +221,9 @@ include("connexion.php");
 
         </div>
         </div>
+
+
+
 
     </main>
     <footer>
