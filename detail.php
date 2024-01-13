@@ -1,4 +1,6 @@
 <?php
+session_start();
+if(isset($_SESSION['loggedin'])&& $_SESSION['loggedin'] == true){
 include('connexion.php');
 session_start();
 
@@ -122,3 +124,8 @@ if (isset($_GET['Envoyer'])) {
 </body>
 
 </html>
+<?php
+}else{
+    header("location: index.php");
+}
+?>
