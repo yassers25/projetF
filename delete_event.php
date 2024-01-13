@@ -13,18 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['event_delete'])) {
         mysqli_query($link, $delete_comments_query);
     }
 
-    // Delete child records from inscription table
-    $delete_inscription_query = "DELETE FROM inscription WHERE ID_EVENT = $event_delete";
-    mysqli_query($link, $delete_inscription_query);
-
-    // Now, delete the record from the event table
     $delete_event_query = "DELETE FROM event WHERE ID_EVENT = $event_delete";
     if (mysqli_query($link, $delete_event_query)) {
         if (mysqli_affected_rows($link) > 0) {
-            // Event deleted successfully
-            echo "<script>alert('Evenement est supprimée!!'); window.location.href = '/projetf/dashboard.php';</script>";
+            header("Location: dashboard.php");
             exit();
-         
         } else {
             echo "Event not found.";
         }
