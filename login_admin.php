@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['TEL'] = $user['TEL'];
             $_SESSION['PASSWORD'] = $user['PASSWORD'];
            
-            header("Location: ajouter_evenement.php");
+            header("Location: dashboard.php");
             exit;
         } else {
             echo '<p style="color: red; font-weight: bold; text-align: center; font-size: 1.5em;">Le mot de passe est incorrect.</p>';
