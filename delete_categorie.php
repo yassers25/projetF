@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cat_delete'])) {
     if (mysqli_query($link, $delete_category_query)) {
         if (mysqli_affected_rows($link) > 0) {
             // Category deleted successfully
-            echo "<script>alert('Catégorie est supprimée!!'); window.location.href = '/projetf/dashboard.php';</script>";
+            echo "<script>alert('Catégorie est supprimée!!'); window.location.href = 'dashboard.php';</script>";
             exit();
         } else {
             echo "Category not found.";
