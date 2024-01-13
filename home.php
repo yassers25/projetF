@@ -1,4 +1,8 @@
 <?php
+session_start();
+include("connexion.php");
+if(isset($_SESSION['loggedin'])&& $_SESSION['loggedin'] == true){
+
 if(isset($_POST['submit']))
 {
     header("Location: https://ensa.uit.ac.ma/");
@@ -297,3 +301,8 @@ window.addEventListener("load", () => {
     })
 });
 </script>
+<?php
+}else{
+    header("location: index.php");
+}
+?>
