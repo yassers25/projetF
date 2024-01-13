@@ -46,7 +46,7 @@ if(isset($_POST['sub'])){
 	}
 	$requette="INSERT INTO user (PASSWORD, EMAIL,NOM,PRENOM,GENDER,ADRESSE,TEL,DATE_NAISSANCE,photo) VALUES('$PASSWORD','$EMAIL','$NOM','$PRENOM','$GENDER','$ADRESSE','$TEL','$DATE_NAISSANCE','$ph_name')";
 	$resultat=mysqli_query($link,$requette);
-    header('location: login.php');
+    header('location: index.php');
 }
 }
 
