@@ -67,13 +67,13 @@ $id_categorie = mysqli_real_escape_string($link, $_POST['id_categorie']);
          $mail->isSMTP();
          $mail->Host = 'smtp.gmail.com'; // Remplacez par le serveur SMTP approprié
          $mail->SMTPAuth = true;
-         $mail->Username = '@gmail.com'; // Remplacez par votre adresse e-mail SMTP
-         $mail->Password = ''; // Remplacez par votre mot de passe SMTP
+         $mail->Username = 'saddiqedouaa00@gmail.com'; // Remplacez par votre adresse e-mail SMTP
+         $mail->Password = 'osuq smvw euvf bvkm'; // Remplacez par votre mot de passe SMTP
          $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
          $mail->Port = 587;
 
          // Destinataire
-         $mail->setFrom('@gmail.com', 'prenom');
+         $mail->setFrom('saddiqedoua00@gmail.com', 'Douaa');
          $mail->addAddress($email);
 
          // Contenu de l'e-mail
