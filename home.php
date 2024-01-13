@@ -86,7 +86,7 @@ if(isset($_POST['submit']))
                 <ul>
                     <li><a href="home.php">Accueil</a></li>
                     <li><a href="events.php">Nos Evenements</a></li>
-                    <li><a href="authentification.php">Admin</a></li>
+                    <li><a href="authentification_admin.php">Admin</a></li>
                     <li><a href="deconnexion_etudiant.php">Déconnexion</a></li>
                 </ul><br>
         </div>
