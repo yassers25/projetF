@@ -1,5 +1,9 @@
 <?php
+session_start();
 include("connexion.php");
+if(isset($_SESSION['loggedin'])&& $_SESSION['loggedin'] == true){
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -290,5 +294,9 @@ include("connexion.php");
     </script>
 
 </body>
-
+<?php
+}else{
+    header("location: index.php");
+}
+?>
 </html>
