@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $insertionQuery = "INSERT INTO inscription (ID_USER, ID_EVENT) VALUES ";
 
     for ($i = 1; $i <= $nombreEvenements; $i++) {
-        $evenementSelectionne = $POST["evenement$i"];
+        $evenementSelectionne = $_POST["evenement_$i"];
 
         // Vérifier si l'événement a déjà été sélectionné
         if (in_array($evenementSelectionne, $evenementsSelectionnes)) {
