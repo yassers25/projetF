@@ -1,131 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
-<style>
-    @font-face {
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Authentification</title>
+    <style>
+         @font-face {
     font-family: font;
     src: url(fonts/LibreBaskerville-Regular.ttf);
 }
-body{
-    width : 100%;
-    height: 100vh;
+        nav {
+    margin-right: auto; /* Adjust this value as needed to move the image to the left */
+}
+
+body {
+    font-family: 'font', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    align-items : center;
-    margin:0;
     background-color: #1b4353;
 }
-main{
-    display : flex;
-    justify-content: center;
-    align-items: center;
-    gap : 1rem;
-    flex-direction: column;
-}
-form{
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-    background-color: #ebebeb;
-    border-radius: 20px;
-    padding : 3rem 2.5rem;
-}
+        h1 {
+            text-align: center;
+            color: white;
+        }
+        form {
+            max-width: 500px;
+            margin: auto;
+            padding: 50px;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            height: auto; 
+        }
+        label {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        input {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #555;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #1b4353;
+            color: white;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .compte {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .compte a {
+            color: #2196F3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .compte a:hover {
+            color: #1565C0;
+            text-decoration: underline;
+        }
 
-input[type="text"], input[type="password"]{
-    padding: 0.4rem 0.8rem;
-    width : 250px;
-    border-radius: 5px;
-    background-color: #ebebeb;
-    border : groove 2px #1b4353;
-    outline : none;
-    transition : 0.1s ease border-color;
-}
-input[type="text"]:focus, input[type="password"]:focus{
-    border-color : #08a5e3;
-}
-
-
-.submit{
-    cursor : pointer;
-    border-radius: 20px;
-    background-color: #0f749c;
-    color : white;
-    font-weight: 600;
-    text-transform :capitalize;
-    width: 100%;
-    padding : 0.5rem;
-    transition : 0.1s ease background-color, 0.1s ease color;
-}
-.submit:hover{
-    background-color: #139bd1;
-    border-color: white;
-}
-
-.action_container{
-    display : flex;
-    justify-content: center;
-}
-a{
-    text-decoration: none;
-    color : #0f749c;
-    width : fit-content;
-}
-.message{
-    color : rgb(97, 9, 9);
-}
     </style>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
 </head>
-
 <body>
-    <main>
-        <img width='250px' src="img/ensa1.png">
-        <form action="#" method="post">
-            <label>Email</label><br><br>
-            <input class="text" type="text" name="email"><br><br><br>
-            <label>Mot de passe</label><br><br>
-            <input class="text" type="password" name="pass"><br><br><br>
-            <input class="submit" type="submit" name="submit" value="connexion">
-            <div class="action_container">
-                <a href="formulaire.php">Créer un compte?</a>
-                <a href="authentification_admin.php">admin</a>
-            </div>
-            <div class="message_container">
-                <?php
-                session_start();
-                include("connexion.php");
-                if($_SERVER["REQUEST_METHOD"] == "POST")
-                {
-                    $email = $_POST["email"];
-                    $password = $_POST["pass"];
-                    $query = "SELECT * FROM user WHERE EMAIL = '$email'";
-                    $execute = mysqli_query($link,$query);
-                    if(mysqli_num_rows($execute)>0)
-                    {
-                        $fetch = mysqli_fetch_assoc($execute);
-                        if($password == $fetch['PASSWORD'])
-                        {
-                            $_SESSION['ID_USER']=$fetch["ID_USER"];
-                            $_SESSION['loggedin'] = true;
-                            $_SESSION['email'] = $fetch['EMAIL'];
-                            header("Location: home.php");
-                            exit();
-                        }
-                        else
-                        {
-                            echo "<p class='message'>Le mot de passe est incorrecte</p>";
-                        }
-                    }
-                    else{
-                        echo "<p class='message'>L'email n'existe pas</p>";
-                    }
-                    mysqli_close($link);
-                }
-                ?>
-            </div>
-        </form>
-    </main>
-</body>
+<nav>
+    <img width='250px' src="img/ensa1.png">
+</nav>
+    <h1> Authentification Admin </h1>
 
+    <form action="login_admin.php" method="post">
+        <label for="login">Login</label>
+        <input type="text" id="login" name="nom" required>
+
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Connexion</button>
+    </form>
+</body>
 </html>
