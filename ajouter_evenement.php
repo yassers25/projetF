@@ -47,10 +47,9 @@ $id_categorie = mysqli_real_escape_string($link, $_POST['id_categorie']);
 	else{
 		$ph_name="inconnu.jpg";
 	}
-	$requette="INSERT INTO event (TITRE,DESCRIPTION,DATE,LOCATION,ID_CATEGORIE,ID_ADMIN,IMAGE) VALUES('$titre','$description','$date','$location','$id_categorie',$id_admin,'$ph_name')";
-	$resultat=mysqli_query($link,$requette);
-
-
+    $requette = "INSERT INTO event (TITRE, DESCRIPTION, DATE, LOCATION, ID_CATEGORIE, ID_ADMIN, IMAGE) 
+    VALUES ('$titre', '$description', '$date', '$location', '$id_categorie', $id_admin, '$ph_name')";
+    $resultat=mysqli_query($link,$requette);
 
  // Récupérez les e-mails des utilisateurs depuis la base de données
  $result = mysqli_query($link, "SELECT EMAIL FROM user");
@@ -68,19 +67,20 @@ $id_categorie = mysqli_real_escape_string($link, $_POST['id_categorie']);
          $mail->isSMTP();
          $mail->Host = 'smtp.gmail.com'; // Remplacez par le serveur SMTP approprié
          $mail->SMTPAuth = true;
-         $mail->Username = ''; // Remplacez par votre adresse e-mail SMTP
-         $mail->Password = ''; // Remplacez par votre mot de passe SMTP
+         $mail->Username = 'saddiqedouaa00@gmail.com'; // Remplacez par votre adresse e-mail SMTP
+         $mail->Password = 'osuq smvw euvf bvkm'; // Remplacez par votre mot de passe SMTP
          $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
          $mail->Port = 587;
 
          // Destinataire
-         $mail->setFrom('', '');
+         $mail->setFrom('saddiqedoua00@gmail.com', 'Douaa');
          $mail->addAddress($email);
 
          // Contenu de l'e-mail
          $mail->isHTML(true);
          $mail->Subject = "Nouvel evenement : $titre";
-         $mail->Body = "Bonjour,<br><br>Nous avons ajouté un nouvel événement \"$titre\" le $date à $location.Consultez-le sur notre site : <a href='http://localhost/projetensa/events.php'>events</a> !<br><br>Cordialement,<br>Votre équipe organisatrice.";
+         $mail->Body = "Bonjour,<br><br>Nous avons ajouté un nouvel événement \"$titre\" le $date à $location. Consultez-le sur notre site : <a href='events.php'>Cliquez ici</a>.<br><br>Cordialement,<br>Votre équipe organisatrice.";
+
 
          // Envoyer l'e-mail
          $mail->send();
@@ -90,7 +90,7 @@ $id_categorie = mysqli_real_escape_string($link, $_POST['id_categorie']);
      }
  }
 
-	header('location:dashboard.php');
+	header('location: dashboard.php');
 }
 
 ?>
@@ -104,7 +104,7 @@ $id_categorie = mysqli_real_escape_string($link, $_POST['id_categorie']);
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-image: url('images/ensa2.jpeg'); /* Remplacez 'votre_image.jpg' par le nom de votre image */
+            background-image: url('images/ensa2.jpeg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -172,49 +172,12 @@ $id_categorie = mysqli_real_escape_string($link, $_POST['id_categorie']);
     padding: 5px;
     box-sizing: border-box;
     resize: vertical; /* Allow vertical resizing */
-        }
+}
 input::placeholder,
 textarea::placeholder {
     color: #1b4353; /* Placeholder text color */
     font-size: 14px; /* Placeholder font size */
-        }
-        #buttons-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
-
-        #buttons-container button {
-            width: calc(50% - 5px);
-            padding: 12px; /* Increased padding for a larger size */
-            background-color: #1b4353;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        #dashboard-link {
-            width: calc(50% - 5px);
-            text-align: center;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #dashboard-link a {
-            width: 100%;
-            padding: 12px;
-            background-color: #1b4353;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            text-decoration: none;
-        }
+}
 
 
     </style>
@@ -222,19 +185,19 @@ textarea::placeholder {
     <body>
 		<h1>ajouter un évenement</h1>
 		<form action="" method="post" id="monform" enctype="multipart/form-data">
-            <label for="titre">Titre</label>
-            <input type="text" name="titre" placeholder="Saisissez le titre" required>
+            <label for="titre">Titre:</label>
+            <input type="text" name="titre" required>
 
-			<label for="description">Description</label>
-            <textarea name="description" placeholder="Saisissez la description" required></textarea>
+			<label for="description">Description:</label>
+            <textarea name="description" rows="6" cols="95" required></textarea>
 
-			<label for="date">Date</label>
+			<label for="date">Date:</label>
             <input type="date" name="date" required>
 
-            <label for="location">Location</label>
-            <input type="text" name="location" placeholder="Saisissez la location" required>
+            <label for="location">Location:</label>
+            <input type="text" name="location" required>
 
-            <label for="id_categorie">Catégorie</label>
+            <label for="id_categorie">Catégorie:</label>
             <select name="id_categorie" required>
                 <?php
             $result= mysqli_query($link, "SELECT* FROM categorie");
@@ -243,19 +206,10 @@ textarea::placeholder {
             }
             ?>
             
-			<label for="fichier">Image</label>
+			<label for="fichier">Image:</label>
 			<input type="file" name="fichier"/>
-            <div id="buttons-container">
-            <input type="submit" name="sub" value="Valider" style="width: 200px;text-align: center;">
-            <div id="dashboard-link">
-                <a href="dashboard.php">
-                    Retourner au tableau de bord
-                </a>
-            </div>
-            </div>
-
+			<input type="submit" name="sub" value="Valider" style="width: 200px;text-align: center;"/>
 		</form>
-    
 	</body>
 </html>
 <?php mysqli_close($link); ?>
