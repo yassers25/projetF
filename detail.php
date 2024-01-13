@@ -2,7 +2,7 @@
 session_start();
 if(isset($_SESSION['loggedin'])&& $_SESSION['loggedin'] == true){
 include('connexion.php');
-session_start();
+
 
 if (isset($_GET['Envoyer'])) {
     $email = $_SESSION['email'];
